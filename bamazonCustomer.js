@@ -71,6 +71,7 @@ function customerPrompts() {
               //console.log(res)  
               console.log("Order placed! Your Bamazon card has been charged $" + price * quantity + ".");
               console.log("Your order of " + name + ", in the amount of " + quantity + ", will arrive in two business days. Thanks for shopping Bamazon!");
+              displayShop();  
             })
           }
           else {
