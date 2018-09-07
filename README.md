@@ -8,10 +8,10 @@ A console based webstore that can be accessed as a customer or as a manager. The
 
 ### Image Preview of Store Functionality
 <!-- take a picture of the image and add it into the readme  -->
-![Customer Storefront & Purchase Process](https://i.imgur.com/t4GVQan.png)
-![Manager View All Products & View Low Invetory (less than 5)](https://i.imgur.com/lLl7XqC.png)
-![Manager Ordering More Inventory](https://i.imgur.com/xEaUyid.png)
-![Manager Adding New Product For Sale](https://i.imgur.com/0UutQrH.png)
+* Customer Storefront & Purchase Process ![Customer Storefront & Purchase Process](https://i.imgur.com/t4GVQan.png)
+* Manager View All Products & View Low Invetory (less than 5) ![Manager View All Products & View Low Invetory (less than 5)](https://i.imgur.com/lLl7XqC.png)
+* Manager Ordering More Inventory ![Manager Ordering More Inventory](https://i.imgur.com/xEaUyid.png)
+* Manager Adding New Product For Sale ![Manager Adding New Product For Sale](https://i.imgur.com/0UutQrH.png)
 
 ## Prerequisites
 
