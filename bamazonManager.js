@@ -28,7 +28,7 @@ function managerMenu() {
     }
     
     else if (menuChoice === "View Low Inventory Summary") {
-      connection.query("SELECT * FROM products", function (err, res) {
+      connection.query("SELECT * FROM products", function(err, res) {
         //if error occurs display the error
         if (err) throw err;
          
@@ -69,7 +69,11 @@ function managerMenu() {
       },{
           message: "How much does it cost?",
           type: "input",
-          name: "newProductPrice",
+          name: "newProductPrice"
+      },{
+          message: "What is the wholesale cost?",
+          type: "input",
+          name: "newWholesalePrice"
       },{
           message: "How many in stock?",
           type: "input",
@@ -80,9 +84,10 @@ function managerMenu() {
         var newName = newProduct.newProductName;
         var newDept = newProduct.newProductDept;
         var newPrice = parseFloat(newProduct.newProductPrice);
+        var newWholesalePrice = parseFloat(newProduct.newWholesalePrice);
         var newStock = parseFloat(newProduct.startingStock);
 
-        connection.query("INSERT INTO products SET ?", {product_name: newName, department_name: newDept, price: newPrice, stock_quantity: newStock}, function(err, res) {
+        connection.query("INSERT INTO products SET ?", {product_name: newName, department_name: newDept, price: newPrice, stock_quantity: newStock, wholesale_cost: newWholesalePrice}, function(err, res) {
           if (err) throw err;
           
           console.log("Store updated!");
@@ -100,7 +105,7 @@ function managerMenu() {
 }
 
 function displayStore() {
-  connection.query("SELECT * FROM products", function (err, res) {
+  connection.query("SELECT * FROM products", function(err, res) {
     //if error occurs display the error
     if (err) throw err;
     //console.log(res); 
@@ -116,6 +121,7 @@ function displayStore() {
         );
     }
     //print the table to terminal
+    console.log("\n");
     console.log(table.toString());
   })  
 }
@@ -147,10 +153,10 @@ function updateInventory() {
 
         connection.query("UPDATE products SET ? WHERE ?", [{stock_quantity: stock + orderQuantity}, {item_id: itemID}], function (err, res) {
         //if error occurs display the error
-        if (err) throw err;
+          if (err) throw err;
         
-        console.log("Order placed. " + orderQuantity + " " + name + " will be shipped to Bamazon central warehouse.");
-        managerMenu();
+          console.log("Order placed. " + orderQuantity + " " + name + " will be shipped to Bamazon central warehouse.");
+          managerMenu();
         })
         
     })

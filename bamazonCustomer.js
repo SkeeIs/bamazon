@@ -12,12 +12,12 @@ var connection = mysql.createConnection({
 
 //function to query the SQL db for table values & construct the "storefront"
 function displayShop() {
-    //query SQL for all data from the products table
-    connection.query("SELECT * FROM products", function (err, res) {
+    //query SQL for all data from the products table except wholesale price (don't want to show our customer's our awesome margin)
+    connection.query("SELECT item_id, product_name, department_name, price, stock_quantity FROM products", function (err, res) {
       //if error occurs display the error
       if (err) throw err;
       //console.log(res); 
-      //create new table using cli-table
+      //create new table using cli-table following their documentation example
       var table = new Table({
           head: ["Item ID", "Product Name", "Department", "Price", "Stock"],
           colWidths: [10, 45, 18, 10, 10]
@@ -63,7 +63,7 @@ function customerPrompts() {
           var name = res[0].product_name;
 
           if (quantity <= stock) {
-            
+            //let user know we have the requested quantity
             console.log("Product in stock! Processing...")
 
             connection.query("UPDATE products SET ? WHERE ?", [{stock_quantity: stock - quantity}, {item_id: selectItem}], function(err, res) {
@@ -74,6 +74,7 @@ function customerPrompts() {
               displayShop();  
             })
           }
+          //if customer wants to buy larger quantity than we have in stock
           else {
             console.log("Insufficient quantity! Please try again.")
             displayShop();  
